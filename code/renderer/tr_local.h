@@ -1412,7 +1412,13 @@ struct shaderCommands_s
 #endif // _NPATCH
 };
 
+#if (_MSC_VER == 1200) // MSVC 6.0
+#pragma pack(push, 16)
+typedef __declspec() shaderCommands_s	shaderCommands_t;
+#pragma pack(pop)
+#else
 typedef __declspec(align(16)) shaderCommands_s	shaderCommands_t;
+#endif
 
 extern	shaderCommands_t	tess;
 
